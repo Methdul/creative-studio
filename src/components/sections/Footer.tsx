@@ -9,8 +9,8 @@ export const Footer = ({ onBookCall }: FooterProps) => {
       <div className="container py-16">
         <div className="grid md:grid-cols-[1.4fr,1fr,1fr] gap-12 mb-12">
           <div>
-            <a href="#" className="flex items-center gap-2 font-display text-lg mb-4">
-              <span className="h-2 w-2 rounded-full bg-primary shadow-glow" />
+            <a href="#" className="flex items-center gap-2 font-display text-lg mb-4 tracking-tight">
+              <img src="/logo.png" alt="Creative Studio Logo" className="h-6 w-6 object-contain" />
               Creative Studio
             </a>
             <p className="text-sm text-muted-foreground max-w-sm mb-6">

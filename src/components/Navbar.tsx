@@ -36,8 +36,8 @@ export const Navbar = ({ onBookCall }: NavbarProps) => {
             scrolled ? "glass shadow-soft" : "bg-transparent"
           )}
         >
-          <a href="#" className="flex items-center gap-2 font-display text-base">
-            <span className="h-2 w-2 rounded-full bg-primary shadow-glow" />
+          <a href="#" className="flex items-center gap-2 font-display text-base tracking-tight">
+            <img src="/logo.png" alt="Creative Studio Logo" className="h-8 w-8 object-contain" />
             Creative Studio
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
