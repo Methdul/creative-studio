@@ -8,54 +8,52 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Creative Studio — premium dark + soft purple */
-    --background: 240 16% 7%;          /* #0F0F14 */
-    --foreground: 240 17% 93%;         /* #EAEAF0 */
+    /* Creative Studio — editorial dark, muted lilac + cream */
+    --background: 30 8% 6%;            /* warm near-black */
+    --foreground: 36 24% 92%;          /* warm off-white */
 
-    --card: 240 16% 12%;               /* #1C1C28 */
-    --card-foreground: 240 17% 93%;
+    --card: 30 8% 9%;
+    --card-foreground: 36 24% 92%;
 
-    --popover: 240 16% 10%;
-    --popover-foreground: 240 17% 93%;
+    --popover: 30 8% 8%;
+    --popover-foreground: 36 24% 92%;
 
-    --primary: 252 100% 68%;           /* #7C5CFF */
-    --primary-foreground: 240 16% 7%;
+    --primary: 270 28% 72%;            /* muted lilac/mauve */
+    --primary-foreground: 30 10% 8%;
 
-    --secondary: 240 16% 14%;
-    --secondary-foreground: 240 17% 93%;
+    --secondary: 30 6% 12%;
+    --secondary-foreground: 36 24% 92%;
 
-    --muted: 240 12% 18%;
-    --muted-foreground: 240 8% 65%;
+    --muted: 30 6% 14%;
+    --muted-foreground: 36 10% 62%;
 
-    --accent: 258 92% 76%;             /* #A78BFA */
-    --accent-foreground: 240 16% 7%;
+    --accent: 36 40% 82%;              /* warm cream highlight */
+    --accent-foreground: 30 10% 8%;
 
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 240 17% 93%;
+    --destructive: 12 65% 55%;
+    --destructive-foreground: 36 24% 92%;
 
-    --border: 240 12% 18%;
-    --input: 240 12% 16%;
-    --ring: 252 100% 68%;
+    --border: 30 6% 16%;
+    --input: 30 6% 14%;
+    --ring: 270 28% 72%;
 
     --radius: 1rem;
 
     /* Brand tokens */
-    --bg-deep: 240 16% 7%;
-    --bg-soft: 240 16% 10%;
-    --surface: 240 16% 12%;
-    --surface-elevated: 240 14% 16%;
-    --primary-glow: 252 100% 75%;
-    --highlight: 258 92% 76%;
+    --surface: 30 8% 9%;
+    --surface-elevated: 30 7% 13%;
+    --primary-glow: 270 35% 78%;
+    --highlight: 36 40% 82%;
 
-    --gradient-hero: radial-gradient(60% 60% at 50% 0%, hsl(252 100% 68% / 0.25) 0%, transparent 70%),
-                      radial-gradient(40% 40% at 80% 30%, hsl(258 92% 76% / 0.18) 0%, transparent 70%),
-                      linear-gradient(180deg, hsl(240 16% 7%), hsl(240 16% 5%));
-    --gradient-primary: linear-gradient(135deg, hsl(252 100% 68%), hsl(258 92% 76%));
-    --gradient-card: linear-gradient(180deg, hsl(240 16% 13%), hsl(240 16% 10%));
+    --gradient-hero: radial-gradient(55% 55% at 50% 0%, hsl(270 30% 55% / 0.22) 0%, transparent 70%),
+                      radial-gradient(40% 40% at 85% 25%, hsl(36 40% 75% / 0.10) 0%, transparent 70%),
+                      linear-gradient(180deg, hsl(30 8% 6%), hsl(30 10% 4%));
+    --gradient-primary: linear-gradient(135deg, hsl(270 28% 72%), hsl(290 22% 78%));
+    --gradient-card: linear-gradient(180deg, hsl(30 8% 11%), hsl(30 8% 8%));
 
-    --shadow-glow: 0 0 60px -10px hsl(252 100% 68% / 0.55);
-    --shadow-soft: 0 10px 40px -10px hsl(240 50% 2% / 0.6);
-    --shadow-card: 0 1px 0 0 hsl(240 12% 22% / 0.6) inset, 0 20px 50px -20px hsl(240 50% 2% / 0.7);
+    --shadow-glow: 0 0 80px -20px hsl(270 35% 65% / 0.45);
+    --shadow-soft: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
+    --shadow-card: 0 1px 0 0 hsl(30 8% 22% / 0.5) inset, 0 30px 60px -30px hsl(0 0% 0% / 0.7);
 
     --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -173,8 +171,8 @@ All colors MUST be HSL.
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(252 100% 68% / 0.55), 0 0 30px -5px hsl(252 100% 68% / 0.5); }
-  50% { box-shadow: 0 0 0 12px hsl(252 100% 68% / 0), 0 0 50px 0 hsl(252 100% 68% / 0.7); }
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45), 0 0 30px -5px hsl(var(--primary) / 0.4); }
+  50% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0), 0 0 60px 0 hsl(var(--primary) / 0.6); }
 }
 @keyframes float-slow {
   0%, 100% { transform: translate(0, 0) scale(1); }
