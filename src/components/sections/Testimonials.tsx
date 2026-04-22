@@ -31,7 +31,7 @@ export const Testimonials = () => {
       <div className="container max-w-4xl">
         <div className="flex flex-col items-center mb-12">
           <img src="/logo.png" alt="Creative Studio Logo" className="h-12 w-12 object-contain mb-6 opacity-80" />
-          <div className="text-xs uppercase tracking-[0.3em] text-primary/80">/ Our Goals</div>
+          <div className="text-xs uppercase tracking-[0.3em] text-primary/80">Our Goals</div>
         </div>
         <div className="relative min-h-[200px]">
           {items.map((t, idx) => (

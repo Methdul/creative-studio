@@ -26,39 +26,29 @@ export const Contact = ({ onBookCall }: ContactProps) => {
               Book a Call instead
             </Button>
             <div className="space-y-4">
-              <a href="mailto:hello@creativestudio.co" className="flex items-center gap-4 p-4 rounded-2xl border border-border/60 bg-card hover:border-primary/50 transition-smooth">
+              <a href="mailto:methduldharmapriya05@gmail.com" className="flex items-center gap-4 p-4 rounded-2xl border border-border/60 bg-card hover:border-primary/50 transition-smooth">
                 <div className="h-10 w-10 rounded-xl bg-surface-elevated flex items-center justify-center text-primary">
                   <Mail className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium">hello@creativestudio.co</div>
-                  <div className="text-xs text-muted-foreground">Replies in &lt; 24h</div>
-                </div>
-              </a>
-              <a href="https://wa.me/" className="flex items-center gap-4 p-4 rounded-2xl border border-border/60 bg-card hover:border-primary/50 transition-smooth">
-                <div className="h-10 w-10 rounded-xl bg-surface-elevated flex items-center justify-center text-primary">
-                  <MessageCircle className="h-4 w-4" />
-                </div>
-                <div>
-                  <div className="text-sm font-medium">WhatsApp us</div>
-                  <div className="text-xs text-muted-foreground">Mon — Fri · 9am to 6pm</div>
+                  <div className="text-sm font-medium">methduldharmapriya05@gmail.com</div>
+                  <div className="text-xs text-muted-foreground">Creative Manager</div>
                 </div>
               </a>
             </div>
           </div>
 
           <form
+            action="https://formspree.io/f/methduldharmapriya05@gmail.com"
+            method="POST"
             onSubmit={(e) => {
-              e.preventDefault();
               setSending(true);
-              setTimeout(() => {
-                setSending(false);
-                toast.success("Message sent. We'll be in touch within 24 hours.");
-                (e.target as HTMLFormElement).reset();
-              }, 700);
+              // We'll let Formspree handle the submission, 
+              // but we can add a small delay to show the "Sending" state
             }}
             className="rounded-3xl border border-border/60 bg-card p-8 space-y-5 shadow-card"
           >
+            <input type="hidden" name="_subject" value="New Message from Creative Studio" />
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label htmlFor="cname">Name</Label>

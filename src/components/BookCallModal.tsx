@@ -151,9 +151,27 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
           {view === "form" && (
             <form
               className="mt-6 space-y-4"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                setView("done");
+                const response = await fetch("https://formspree.io/f/methduldharmapriya05@gmail.com", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    ...form,
+                    date: date?.toDateString(),
+                    time: time,
+                    _subject: `New Call Booking: ${form.name}`
+                  }),
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+                });
+                
+                if (response.ok) {
+                  setView("done");
+                } else {
+                  alert("Something went wrong. Please try again.");
+                }
               }}
             >
               <div className="flex items-center gap-2 text-sm text-muted-foreground rounded-lg bg-surface/60 border border-border/60 p-3">

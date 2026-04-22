@@ -41,7 +41,7 @@ export const Footer = ({ onBookCall }: FooterProps) => {
           </div>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border/60 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Creative Studio. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Creative Studio · trycreativestudio.com. All rights reserved.</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground transition-smooth">Privacy</a>
             <a href="#" className="hover:text-foreground transition-smooth">Terms</a>
