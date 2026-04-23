@@ -71,37 +71,17 @@ export const Navbar = ({ onBookCall }: NavbarProps) => {
         >
           <a href="#" className="flex items-center gap-2 font-display text-base tracking-tight mx-auto sm:mx-0 min-h-[32px]">
             <img src="/logo.png" alt="Creative Studio Logo" className="h-8 w-8 object-contain shrink-0" />
-            
-            <div className="relative">
-              {/* Desktop and Mobile Initial State */}
-              <span className={cn(
-                "block transition-smooth duration-500",
-                currentTitle && scrolled ? "opacity-0 -translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
-              )}>
-                Creative Studio
-              </span>
-
-              {/* Mobile Dynamic Section Title */}
-              {currentTitle && (
-                <div className={cn(
-                  "absolute inset-0 flex items-center gap-2 transition-smooth duration-500 sm:hidden whitespace-nowrap",
-                  scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}>
-                  <span className="text-primary/60 text-[10px] uppercase tracking-widest font-sans font-bold">/</span>
-                  <span className="font-display">{currentTitle}</span>
-                </div>
-              )}
-            </div>
+            <span>Creative Studio</span>
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             {links.map((l) => (
-              <a 
-                key={l.href} 
-                href={l.href} 
+              <a
+                key={l.href}
+                href={l.href}
                 className={cn(
                   "transition-smooth hover:text-foreground",
-                  activeSection === l.href.replace("#", "") 
-                    ? "text-primary opacity-100" 
+                  activeSection === l.href.replace("#", "")
+                    ? "text-primary opacity-100"
                     : "text-muted-foreground opacity-70"
                 )}
               >
