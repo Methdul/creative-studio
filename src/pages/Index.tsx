@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { Services } from "@/components/sections/Services";
-import { Work } from "@/components/sections/Work";
+
 import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
@@ -32,8 +32,8 @@ const Index = () => {
       <main>
         <Hero onBookCall={book} />
         <TrustBar />
-        <Services />
-        <Work />
+        <Services onBookCall={book} />
+
         <Process />
         <Testimonials />
         <CTA onBookCall={book} />

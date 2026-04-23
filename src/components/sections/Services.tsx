@@ -25,7 +25,11 @@ const services = [
   },
 ];
 
-export const Services = () => {
+interface ServicesProps {
+  onBookCall?: () => void;
+}
+
+export const Services = ({ onBookCall }: ServicesProps) => {
   return (
     <section id="services" className="py-28 sm:py-36 relative overflow-hidden">
       <div className="container">
@@ -41,6 +45,7 @@ export const Services = () => {
           {services.map((s, index) => (
             <div
               key={s.title}
+              onClick={onBookCall}
               className="group relative aspect-[16/10] rounded-[2rem] bg-card transition-smooth overflow-hidden cursor-pointer border border-white/5"
             >
               {/* Background Image with Zoom Effect */}

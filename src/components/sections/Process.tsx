@@ -10,7 +10,7 @@ export const Process = () => {
     <section id="process" className="py-28 sm:py-36">
       <div className="container">
         <div className="max-w-2xl mb-16">
-          <div className="text-xs uppercase tracking-[0.3em] text-primary/80 mb-3">/ 03 Process</div>
+          <div className="text-xs uppercase tracking-[0.3em] text-primary/80 mb-3">/ 02 Process</div>
           <h2 className="font-display text-4xl sm:text-5xl leading-[1.05]">
             Everything starts<br />
             <span className="text-muted-foreground">with a call.</span>

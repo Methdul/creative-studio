@@ -31,21 +31,21 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
   const [cursor, setCursor] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", project: PROJECT_TYPES[0], budget: "", notes: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", notes: "" });
 
   const days = getMonthDays(cursor.getFullYear(), cursor.getMonth());
   const monthLabel = cursor.toLocaleString("en", { month: "long", year: "numeric" });
 
-  const isPast = (d: Date) => {
+  const isUnavailable = (d: Date) => {
     const t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    return d < t;
+    return d <= t; // Today and past are unavailable
   };
 
   const reset = () => {
     setView("calendar");
     setDate(null);
     setTime(null);
-    setForm({ name: "", email: "", project: PROJECT_TYPES[0], budget: "", notes: "" });
+    setForm({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", notes: "" });
   };
 
   const handleClose = (o: boolean) => {
@@ -94,7 +94,7 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
                 <div className="grid grid-cols-7 gap-1">
                   {days.map((d, i) => {
                     if (!d) return <div key={i} />;
-                    const disabled = isPast(d) || d.getDay() === 0 || d.getDay() === 6;
+                    const disabled = isUnavailable(d);
                     const selected = date && d.toDateString() === date.toDateString();
                     return (
                       <button
@@ -153,7 +153,8 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
               className="mt-6 space-y-4"
               onSubmit={async (e) => {
                 e.preventDefault();
-                const response = await fetch("https://formspree.io/f/methduldharmapriya05@gmail.com", {
+                // Note: Replace 'your-form-id' with your actual Formspree form ID
+                const response = await fetch("https://formspree.io/f/xeevpwkj", { // Using a sample ID or the user should provide one
                   method: "POST",
                   body: JSON.stringify({
                     ...form,
@@ -170,7 +171,8 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
                 if (response.ok) {
                   setView("done");
                 } else {
-                  alert("Something went wrong. Please try again.");
+                  const errorData = await response.json();
+                  alert(errorData.error || "Something went wrong. Please check your Formspree ID or try again later.");
                 }
               }}
             >
@@ -188,29 +190,52 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
                   <Input id="email" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
                 </div>
               </div>
-              <div className="space-y-1.5">
-                <Label>Project type</Label>
-                <div className="flex flex-wrap gap-2">
-                  {PROJECT_TYPES.map((p) => (
-                    <button
-                      type="button"
-                      key={p}
-                      onClick={() => setForm({ ...form, project: p })}
-                      className={cn(
-                        "px-3 py-1.5 rounded-full text-xs border transition-smooth",
-                        form.project === p
-                          ? "border-primary bg-primary/15 text-foreground"
-                          : "border-border bg-surface/50 hover:border-primary/40"
-                      )}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input id="phone" type="tel" placeholder="+94 77 123 4567" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Project type</Label>
+                  <div className="flex flex-wrap gap-2">
+                    <select 
+                      className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      value={form.project}
+                      onChange={(e) => setForm({ ...form, project: e.target.value })}
                     >
-                      {p}
-                    </button>
-                  ))}
+                      {PROJECT_TYPES.map((p) => (
+                        <option key={p} value={p}>{p}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="budget">Budget <span className="text-muted-foreground/70 font-normal">(optional)</span></Label>
-                <Input id="budget" placeholder="$1k – $5k" value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} />
+                <div className="flex gap-2">
+                  <div className="flex rounded-lg border border-border/60 overflow-hidden h-10 shrink-0">
+                    {["USD", "LKR"].map((c) => (
+                      <button
+                        key={c}
+                        type="button"
+                        onClick={() => setForm({ ...form, currency: c })}
+                        className={cn(
+                          "px-3 text-xs font-medium transition-smooth",
+                          form.currency === c ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-surface-elevated text-muted-foreground"
+                        )}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                  <Input 
+                    id="budget" 
+                    className="flex-1"
+                    placeholder={form.currency === "USD" ? "e.g. 5,000" : "e.g. 1,500,000"} 
+                    value={form.budget} 
+                    onChange={(e) => setForm({ ...form, budget: e.target.value })} 
+                  />
+                </div>
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="notes">What do you need?</Label>

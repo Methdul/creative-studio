@@ -36,12 +36,7 @@ export const Hero = ({ onBookCall }: HeroProps) => {
                 Book a Call
                 <ArrowUpRight className="h-5 w-5" />
               </Button>
-              <Button asChild variant="ghost" size="xl" className="rounded-full border border-border/40 hover:bg-foreground hover:text-background transition-all duration-300 px-6">
-                <a href="#work" className="flex items-center gap-2">
-                  <Play className="h-4 w-4" />
-                  View Work
-                </a>
-              </Button>
+
             </div>
             <div className="flex items-center gap-6 pt-4 text-sm text-muted-foreground">
               <div>
