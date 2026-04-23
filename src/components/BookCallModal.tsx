@@ -31,7 +31,7 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
   const [cursor, setCursor] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", notes: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", language: "English", notes: "" });
 
   const days = getMonthDays(cursor.getFullYear(), cursor.getMonth());
   const monthLabel = cursor.toLocaleString("en", { month: "long", year: "numeric" });
@@ -45,7 +45,7 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
     setView("calendar");
     setDate(null);
     setTime(null);
-    setForm({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", notes: "" });
+    setForm({ name: "", email: "", phone: "", project: PROJECT_TYPES[0], budget: "", currency: "USD", language: "English", notes: "" });
   };
 
   const handleClose = (o: boolean) => {
@@ -210,31 +210,51 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
                   </div>
                 </div>
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="budget">Budget <span className="text-muted-foreground/70 font-normal">(optional)</span></Label>
-                <div className="flex gap-2">
-                  <div className="flex rounded-lg border border-border/60 overflow-hidden h-10 shrink-0">
-                    {["USD", "LKR"].map((c) => (
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="budget">Budget <span className="text-muted-foreground/70 font-normal">(optional)</span></Label>
+                  <div className="flex gap-2">
+                    <div className="flex rounded-lg border border-border/60 overflow-hidden h-10 shrink-0">
+                      {["USD", "LKR"].map((c) => (
+                        <button
+                          key={c}
+                          type="button"
+                          onClick={() => setForm({ ...form, currency: c })}
+                          className={cn(
+                            "px-3 text-xs font-medium transition-smooth",
+                            form.currency === c ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-surface-elevated text-muted-foreground"
+                          )}
+                        >
+                          {c}
+                        </button>
+                      ))}
+                    </div>
+                    <Input 
+                      id="budget" 
+                      className="flex-1"
+                      placeholder={form.currency === "USD" ? "e.g. 5,000" : "e.g. 1,500,000"} 
+                      value={form.budget} 
+                      onChange={(e) => setForm({ ...form, budget: e.target.value })} 
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Preferred Language</Label>
+                  <div className="flex rounded-lg border border-border/60 overflow-hidden h-10">
+                    {["English", "Sinhala"].map((l) => (
                       <button
-                        key={c}
+                        key={l}
                         type="button"
-                        onClick={() => setForm({ ...form, currency: c })}
+                        onClick={() => setForm({ ...form, language: l })}
                         className={cn(
-                          "px-3 text-xs font-medium transition-smooth",
-                          form.currency === c ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-surface-elevated text-muted-foreground"
+                          "flex-1 px-3 text-xs font-medium transition-smooth",
+                          form.language === l ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-surface-elevated text-muted-foreground"
                         )}
                       >
-                        {c}
+                        {l}
                       </button>
                     ))}
                   </div>
-                  <Input 
-                    id="budget" 
-                    className="flex-1"
-                    placeholder={form.currency === "USD" ? "e.g. 5,000" : "e.g. 1,500,000"} 
-                    value={form.budget} 
-                    onChange={(e) => setForm({ ...form, budget: e.target.value })} 
-                  />
                 </div>
               </div>
               <div className="space-y-1.5">
