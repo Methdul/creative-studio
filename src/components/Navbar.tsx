@@ -36,7 +36,7 @@ export const Navbar = ({ onBookCall }: NavbarProps) => {
             scrolled ? "glass shadow-soft" : "bg-transparent"
           )}
         >
-          <a href="#" className="flex items-center gap-2 font-display text-base tracking-tight">
+          <a href="#" className="flex items-center gap-2 font-display text-base tracking-tight mx-auto sm:mx-0">
             <img src="/logo.png" alt="Creative Studio Logo" className="h-8 w-8 object-contain" />
             Creative Studio
           </a>
@@ -47,7 +47,7 @@ export const Navbar = ({ onBookCall }: NavbarProps) => {
               </a>
             ))}
           </nav>
-          <Button onClick={onBookCall} variant="hero" size="sm" className="rounded-full">
+          <Button onClick={onBookCall} variant="hero" size="sm" className="hidden sm:inline-flex rounded-full px-5 text-xs">
             Book a Call
           </Button>
         </div>

@@ -4,11 +4,37 @@ export const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
 
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
   useEffect(() => {
+    const checkImages = () => {
+      const images = Array.from(document.images);
+      if (images.length === 0) {
+        setImagesLoaded(true);
+        return;
+      }
+      const loaded = images.every((img) => img.complete);
+      if (loaded) {
+        setImagesLoaded(true);
+      }
+    };
+
+    // Check periodically
+    const imgInterval = setInterval(checkImages, 100);
+    
+    // Also check on window load
+    window.addEventListener('load', () => setImagesLoaded(true));
+
     const interval = setInterval(() => {
       setProgress((prev) => {
+        // Slow down as we reach 90% if images aren't loaded yet
+        if (prev >= 90 && !imagesLoaded) {
+          return prev + 0.1; 
+        }
+        
         if (prev >= 100) {
           clearInterval(interval);
+          clearInterval(imgInterval);
           setTimeout(() => setFadeOut(true), 500);
           return 100;
         }
@@ -16,8 +42,12 @@ export const LoadingScreen = () => {
       });
     }, 30);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      clearInterval(interval);
+      clearInterval(imgInterval);
+      window.removeEventListener('load', () => setImagesLoaded(true));
+    };
+  }, [imagesLoaded]);
 
   if (fadeOut && progress >= 100) {
     return null;
