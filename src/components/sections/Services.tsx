@@ -31,7 +31,7 @@ interface ServicesProps {
 
 export const Services = ({ onBookCall }: ServicesProps) => {
   return (
-    <section id="services" className="py-28 sm:py-36 relative overflow-hidden">
+    <section id="services" className="py-20 sm:py-36 relative overflow-hidden">
       <div className="container">
         <div className="max-w-2xl mb-20">
           <div className="text-xs uppercase tracking-[0.4em] text-primary/80 mb-4">/ 01 Services</div>

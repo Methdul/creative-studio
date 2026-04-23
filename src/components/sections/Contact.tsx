@@ -22,7 +22,7 @@ export const Contact = ({ onBookCall }: ContactProps) => {
             <p className="text-muted-foreground mb-10 max-w-md">
               Prefer a real conversation? Book a call and we'll skip the back-and-forth.
             </p>
-            <Button onClick={onBookCall} variant="hero" size="lg" className="rounded-full mb-10">
+            <Button onClick={onBookCall} variant="hero" size="lg" className="rounded-full mb-8 sm:mb-10 w-full sm:w-auto">
               Book a Call instead
             </Button>
             <div className="space-y-4">
@@ -68,7 +68,7 @@ export const Contact = ({ onBookCall }: ContactProps) => {
                 setSending(false);
               }
             }}
-            className="rounded-3xl border border-border/60 bg-card p-8 space-y-5 shadow-card"
+            className="rounded-3xl border border-border/60 bg-card p-5 sm:p-8 space-y-5 shadow-card"
           >
             <input type="hidden" name="_subject" value="New Message from Creative Studio" />
             <div className="grid sm:grid-cols-2 gap-4">

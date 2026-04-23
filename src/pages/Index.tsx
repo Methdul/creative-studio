@@ -40,7 +40,6 @@ const Index = () => {
         <Contact onBookCall={book} />
       </main>
       <Footer onBookCall={book} />
-      <StickyBookButton onClick={book} />
       <BookCallModal open={open} onOpenChange={setOpen} />
     </div>
   );

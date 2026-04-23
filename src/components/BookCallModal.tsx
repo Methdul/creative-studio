@@ -55,7 +55,7 @@ export const BookCallModal = ({ open, onOpenChange }: BookCallModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[640px] glass border-border/60 p-0 overflow-hidden">
+      <DialogContent className="sm:max-w-[640px] max-h-[95vh] overflow-y-auto glass border-border/60 p-0">
         <div className="p-6 sm:p-8">
           <DialogHeader className="space-y-2 text-left">
             <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary/80">
