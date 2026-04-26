@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MessageCircle } from "lucide-react";
+
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -25,17 +25,7 @@ export const Contact = ({ onBookCall }: ContactProps) => {
             <Button onClick={onBookCall} variant="hero" size="lg" className="rounded-full mb-8 sm:mb-10 w-full sm:w-auto">
               Book a Call instead
             </Button>
-            <div className="space-y-4">
-              <a href="mailto:methduldharmapriya05@gmail.com" className="flex items-center gap-4 p-4 rounded-2xl border border-border/60 bg-card hover:border-primary/50 transition-smooth">
-                <div className="h-10 w-10 rounded-xl bg-surface-elevated flex items-center justify-center text-primary">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <div>
-                  <div className="text-sm font-medium">methduldharmapriya05@gmail.com</div>
-                  <div className="text-xs text-muted-foreground">Creative Manager</div>
-                </div>
-              </a>
-            </div>
+
           </div>
 
           <form
